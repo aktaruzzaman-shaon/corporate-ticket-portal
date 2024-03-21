@@ -1,6 +1,6 @@
 "use client"
-import React, { useState } from 'react'
 
+import React, { useState } from 'react'
 const TicketForm = () => {
 
     const singleTicket = {
@@ -14,10 +14,10 @@ const TicketForm = () => {
 
     const [newTicket, setNewTicket] = useState(singleTicket);
 
-    const handleForm = (formData) => {
-        const name = formData.get("title");
-        console.log(name);
-    }
+    // const handleForm = (formData) => {
+    //     const name = formData.get("title");
+    //     console.log(name);
+    // }
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -29,14 +29,14 @@ const TicketForm = () => {
             }
         ))
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(newTicket)
     }
 
     return (
         <div className='flex justify-center'>
-            <form onSubmit={handleSubmit}>
+            <form method='post' onSubmit={handleSubmit}>
                 <h3 className='text-center'>Create your ticket</h3>
 
                 <label>Title</label>
@@ -55,14 +55,11 @@ const TicketForm = () => {
                 </select>
                 <br />
 
-                <label>Priority  : </label>
                 <div>
-                    <input type="radio" name="priority" id="priority-1" className="radio radio-primary" value={1} onChange={handleChange} checked={newTicket.priority == 1} />
-                    <label>1</label>
-                    <input type="radio" name="priority" id="priority-1" className="radio radio-primary" onChange={handleChange} checked={newTicket.priority == 2} />
-                    <label>2</label>
-                    <input type="radio" name="priority" id="priority-1" className="radio radio-primary" onChange={handleChange} checked={newTicket.priority == 3} />
-                    <label>3</label>
+                    Priority  :
+                    <label><input type="radio" name="priority"  onChange={handleChange} value={1}/> Option 1</label>
+                    <label><input type="radio" name="priority"  onChange={handleChange} value={2}/> Option 2</label>
+                    <label><input type="radio" name="priority"  onChange={handleChange} value={3}/> Option 3</label>
                 </div>
                 <br />
 
@@ -71,7 +68,7 @@ const TicketForm = () => {
                 <br />
 
                 <label>Status</label>
-                <input type="text" id="status" name="status" placeholder="Status" value={newTicket.status} className="input w-full max-w-xs" /><br />
+                <input type="text" id="status" name="status" placeholder="Status" value={newTicket.status} className="input w-full max-w-xs" onChange={handleChange}/><br />
 
                 <button type='submit' className='btn'>Submit</button>
             </form>
