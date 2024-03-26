@@ -1,6 +1,6 @@
 "use client"
-
 import React, { useState } from 'react'
+
 const TicketForm = () => {
 
     const singleTicket = {
@@ -14,11 +14,6 @@ const TicketForm = () => {
 
     const [newTicket, setNewTicket] = useState(singleTicket);
 
-    // const handleForm = (formData) => {
-    //     const name = formData.get("title");
-    //     console.log(name);
-    // }
-
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -29,9 +24,18 @@ const TicketForm = () => {
             }
         ))
     }
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(newTicket)
+        const res = await fetch("/api/Tickets", {
+            method: "POST",
+            body: JSON.stringify({ newTicket }),
+            "content-type": "application/json"
+        })
+        if (res) {
+            console.log(res)
+        }
+
     }
 
     return (
@@ -57,9 +61,9 @@ const TicketForm = () => {
 
                 <div>
                     Priority  :
-                    <label><input type="radio" name="priority"  onChange={handleChange} value={1}/> Option 1</label>
-                    <label><input type="radio" name="priority"  onChange={handleChange} value={2}/> Option 2</label>
-                    <label><input type="radio" name="priority"  onChange={handleChange} value={3}/> Option 3</label>
+                    <label><input type="radio" name="priority" onChange={handleChange} value={1} />1</label>
+                    <label><input type="radio" name="priority" onChange={handleChange} value={2} />  2</label>
+                    <label><input type="radio" name="priority" onChange={handleChange} value={3} /> 3</label>
                 </div>
                 <br />
 
@@ -68,7 +72,8 @@ const TicketForm = () => {
                 <br />
 
                 <label>Status</label>
-                <input type="text" id="status" name="status" placeholder="Status" value={newTicket.status} className="input w-full max-w-xs" onChange={handleChange}/><br />
+                <input type="text" id="status" name="status" placeholder="Status" value={newTicket.status} className="input w-full max-w-xs" onChange={handleChange} /><br />
+
 
                 <button type='submit' className='btn'>Submit</button>
             </form>
