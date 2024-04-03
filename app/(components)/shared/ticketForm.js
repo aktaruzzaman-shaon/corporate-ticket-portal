@@ -32,8 +32,8 @@ const TicketForm = () => {
             body: JSON.stringify({ newTicket }),
             "content-type": "application/json"
         })
-        if (res) {
-            console.log(res)
+        if (res.ok) {
+             console.log("ticket created")
         }
 
     }

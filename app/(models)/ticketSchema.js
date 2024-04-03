@@ -1,13 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 
-mongoose.connect(process.env.MONGODB_URI)
-
-
 const ticketSchema = new Schema(
     {
         title: {
             type: String,
-            required: true
+            required: [true, "Ticket title required"]
         },
         description: {
             type: String,
@@ -33,6 +30,6 @@ const ticketSchema = new Schema(
     { timestamps: true }
 )
 
-const Ticket = mongoose.model("Ticket", ticketSchema)
+const Ticket = mongoose.models.Ticket || mongoose.model("Ticket", ticketSchema)
 
 export default Ticket;
