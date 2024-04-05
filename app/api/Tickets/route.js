@@ -16,7 +16,6 @@ export async function POST(req) {
 
 export async function GET(req) {
     try {
-        
         const tickets = await Ticket.find();
         return NextResponse.json({tickets})
     } catch (error) {
