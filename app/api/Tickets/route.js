@@ -1,3 +1,4 @@
+import connectdb from "@/app/(models)/db";
 import Ticket from "@/app/(models)/ticketSchema";
 import { NextResponse } from "next/server";
 
@@ -16,8 +17,10 @@ export async function POST(req) {
 
 export async function GET(req) {
     try {
+        await connectdb()
         const tickets = await Ticket.find();
-        return NextResponse.json({tickets})
+        console.log(tickets)
+        return NextResponse.json({ tickets })
     } catch (error) {
         return NextResponse.json({ message: "erro", error }, { status: 500 })
     }

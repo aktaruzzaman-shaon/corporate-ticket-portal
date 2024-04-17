@@ -1,11 +1,12 @@
-"use client"
 
 import Ticket from "./(components)/ticket";
 
 const alltickets = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/Tickets")
+    console.log(res)
     const data = await res.json()
+    console.log(data)
     return data;
   } catch (error) {
     console.log("Failed to get tickets", error)
@@ -13,11 +14,7 @@ const alltickets = async () => {
 }
 
 export default async function Home() {
-  const { tickets } = await alltickets();
-  const onlcilkcheck = ()=>{
-    console.log("clicked")
-  }
-  console.log(tickets)
+  const data = await alltickets();
 
   return (
     <div>
@@ -33,9 +30,9 @@ export default async function Home() {
             </tr>
           </thead>
           <tbody>
-            {
-              tickets.map((singleTicket,index) => <Ticket singleTicket={singleTicket} index={index}></Ticket>)
-            }
+            {/* {
+              tickets.map((singleTicket, index) => <Ticket singleTicket={singleTicket} index={index}></Ticket>)
+            } */}
           </tbody>
         </table>
       </div>
