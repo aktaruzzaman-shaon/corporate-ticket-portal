@@ -1,3 +1,4 @@
+"use client"
 
 const Ticket = ({ singleTicket, index }) => {
     const {_id,title,description,category,priority,progress,status,updatedAt} = singleTicket;

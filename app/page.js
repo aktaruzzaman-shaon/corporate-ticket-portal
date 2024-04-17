@@ -1,25 +1,24 @@
-
+"use client"
+import TicketTable from "./(components)/shared/ticketTable";
 import Ticket from "./(components)/ticket";
 
 const alltickets = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/Tickets")
-    console.log(res)
-    const data = await res.json()
-    console.log(data)
-    return data;
+    return await res.json()
   } catch (error) {
     console.log("Failed to get tickets", error)
   }
+
 }
 
 export default async function Home() {
-  const data = await alltickets();
+  const { tickets } = await alltickets();
 
   return (
     <div>
       <div className="overflow-x-auto mx-5">
-        <table className="table">
+        {/* <table className="table">
           <thead>
             <tr>
               <th>Ticked id</th>
@@ -30,11 +29,12 @@ export default async function Home() {
             </tr>
           </thead>
           <tbody>
-            {/* {
-              tickets.map((singleTicket, index) => <Ticket singleTicket={singleTicket} index={index}></Ticket>)
-            } */}
+            {
+              tickets.map((singleTicket, index) => <Ticket singleTicket={singleTicket} index={index} key={index}></Ticket>)
+            }
           </tbody>
-        </table>
+        </table> */}
+        <TicketTable tickets={tickets}></TicketTable>
       </div>
     </div>
   );
