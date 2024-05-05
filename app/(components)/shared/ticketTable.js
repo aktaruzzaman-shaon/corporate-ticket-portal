@@ -1,7 +1,17 @@
-"use client"
-import Ticket from "../ticket";
 
-const TicketTable = ({ tickets }) => {
+
+// fetching all tickets from DB----------------------
+const alltickets = async () => {
+    try {
+        const res = await fetch("http://localhost:3000/api/Tickets")
+        return await res.json()
+    } catch (error) {
+        return ("Failed to get tickets", error)
+    }
+
+}
+async function TicketTable() {
+    const { tickets } = await alltickets();
     return (
         <table className="table">
             <thead>
@@ -18,14 +28,14 @@ const TicketTable = ({ tickets }) => {
                     tickets.map((singleTicket, index) => {
                         return (
                             <tr key={index}>
-                                <th>{singleTicket.index + 1}</th>
+                                <td>{index + 1}</td>
                                 <td>{singleTicket._id}</td>
                                 <td>{singleTicket.title}</td>
                                 <td>{singleTicket.updatedAt}</td>
                             </tr>
                         )
                     }
-                )
+                    )
                 }
             </tbody>
         </table >
