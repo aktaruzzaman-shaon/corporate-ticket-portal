@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 const Nav = () => {
-    const navItems = ['All Tickets', "Open", "Dashboard"]
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -11,22 +10,35 @@ const Nav = () => {
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
-                    {
-                        navItems.map((navItem, index) => <Link className="pt-3 mx-3" href="/allTicket" key={index}>{navItem}</Link>)
-                    }
+                    <li className="mt-3"><Link className="mx-3" href="/allTicket">All Tickets</Link></li>
+                    <li className="mt-3"><Link className="mx-3" href="/open">Open</Link></li>
+                    <li className="mt-3"><Link className="mx-3" href="/dashboard">Dashboard</Link></li>
 
-                    <li>
+                   
+                        <div className="dropdown dropdown-end mt-1">
+                            <div tabIndex={0} role="button" className="btn  rounded-btn">Account</div>
+                            <ul tabIndex={0} className="menu dropdown-content z-[1] p-1 shadow bg-base-300 rounded-box w-42 mt-4">
+                                <li> <Link className="pt-2 mx-3" href="login">login</Link></li>
+                                <li> <Link className="pt-2 mx-3" href="logout">logout</Link></li>
+                                <li> <Link className="pt-2 mx-3" href="signup">Signup</Link></li>
+                            </ul>
+                        </div>
+                   
+                    {/* <li>
                         <details>
                             <summary>
                                 Account
                             </summary>
-                            <ul className="p-2 bg-black-500 rounded-t-none bg-zinc-600">
-                                <li> <Link href="/settings">Settings</Link></li>
-                                <li><Link href="/login">Login</Link></li>
-                                <li><Link href="/logout">logout</Link></li>
-                            </ul>
+                            <span>
+                                <ul className="p-2 bg-black-500 rounded-t-none bg-zinc-600">
+                                    <li> <Link href="/settings">Settings</Link></li>
+                                    <Link className="pt-2 mx-3" href="/login">login</Link>
+                                    <li><Link href="/signup">logout</Link></li>
+                                    <button type="btn"> <Link className="pt-2 mx-3" href="/login">login</Link></button>
+                                </ul>
+                            </span>
                         </details>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </div>
