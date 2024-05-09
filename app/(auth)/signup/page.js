@@ -1,6 +1,9 @@
 "use client"
+import { auth } from "@/app/services/firebase/firebase.config";
 import React from "react"
 import { useState } from "react";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+
 
 const SignUp = () => {
     const [user, setUser] = useState({
@@ -9,8 +12,19 @@ const SignUp = () => {
         username: ""
     })
 
-    const signUp = async () => {
+    const [
+        createUserWithEmailAndPassword,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
 
+    const signUp = async () => {
+        console.log(user.email,user.password)
+        createUserWithEmailAndPassword(user.email, user.password)
+    }
+
+    if(loading){
+        return <p>Loading ....</p>
     }
 
 
