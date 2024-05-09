@@ -35,9 +35,9 @@ const TicketForm = () => {
         if (res.ok) {
              console.log("ticket created")
         }
-
+        
     }
-
+    
     return (
         <div className='flex justify-center'>
             <form method='post' onSubmit={handleSubmit}>

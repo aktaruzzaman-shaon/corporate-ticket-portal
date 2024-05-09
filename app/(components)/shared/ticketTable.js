@@ -1,15 +1,15 @@
-
+import Link from "next/link";
 
 // fetching all tickets from DB----------------------
 const alltickets = async () => {
     try {
-        const res = await fetch("http://localhost:3000/api/Tickets")
+        const res = await fetch("http://localhost:3000//api/Tickets")
         return await res.json()
     } catch (error) {
         return ("Failed to get tickets", error)
     }
-
 }
+
 async function TicketTable() {
     const { tickets } = await alltickets();
     return (

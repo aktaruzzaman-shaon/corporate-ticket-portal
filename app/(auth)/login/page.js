@@ -9,7 +9,7 @@ const login = () => {
     })
 
     const signUp = async () => {
-
+        
     }
     return (
         <div className="flex flex-col">
