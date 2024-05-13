@@ -1,32 +1,42 @@
 "use client"
-import { auth } from "@/app/services/firebase/firebase.config";
-import React from "react"
-import { useState } from "react";
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
+import React from "react"
+import auth from "@/app/services/firebase/firebase.config";
+import { useState } from "react";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
+
     const [user, setUser] = useState({
         email: "",
         password: "",
         username: ""
     })
 
-    const [
-        createUserWithEmailAndPassword,
-        loading,
-        error,
+    // use hooks
+    const router = useRouter();
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
+    const [createUserWithEmailAndPassword, loading,
     ] = useCreateUserWithEmailAndPassword(auth);
 
+    // create user with email and password
     const signUp = async () => {
-        console.log(user.email,user.password)
-        createUserWithEmailAndPassword(user.email, user.password)
+        const res = await createUserWithEmailAndPassword(user.email, user.password)
+        console.log(res)
+        if (res.user.uid) {
+            return router.replace('/allTicket')
+        }
     }
 
-    if(loading){
-        return <p>Loading ....</p>
+    // create user with Google login
+    const googleSignUpHandler = () => {
+        signInWithGoogle(user.email, user.password)
     }
 
+    if (loading) {
+        <p>Loading ...</p>
+    }
 
     return (
         <div className="flex flex-col">
@@ -60,6 +70,7 @@ const SignUp = () => {
                 className="p-2 bg-green-300 text-black"
             />
             <button onClick={signUp} className="btn bg-red-400 mt-2 focus:bg-green-700 p-2 border text-black"> Signup</button>
+            <button onClick={googleSignUpHandler} className="btn bg-red-400 mt-2 focus:bg-green-700 p-2 border text-black">Google</button>
         </div>
     );
 };

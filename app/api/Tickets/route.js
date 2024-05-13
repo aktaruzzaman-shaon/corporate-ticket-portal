@@ -6,10 +6,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
     try {
+        await connectdb()
         const body = await req.json()
         const ticketData = body.newTicket;
         await Ticket.create(ticketData)
-       
+
         return NextResponse.json({ message: "Ticket created" })
     } catch (err) {
         return NextResponse.json({ message: "error", err })
@@ -18,6 +19,7 @@ export async function POST(req) {
 
 export async function GET(req) {
     try {
+        await connectdb()
         const tickets = await Ticket.find();
         return NextResponse.json({ tickets })
     } catch (error) {
