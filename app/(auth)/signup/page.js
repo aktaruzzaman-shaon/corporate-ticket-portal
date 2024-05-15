@@ -23,8 +23,10 @@ const SignUp = () => {
     // create user with email and password
     const signUp = async () => {
         const res = await createUserWithEmailAndPassword(user.email, user.password)
-        console.log(res)
+
         if (res.user.uid) {
+            await fetch('http://localhost:3000/')
+
             return router.replace('/allTicket')
         }
     }
