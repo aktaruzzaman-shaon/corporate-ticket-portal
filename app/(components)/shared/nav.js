@@ -9,9 +9,11 @@ const Nav = () => {
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
-                    <li className="mt-3"><Link className="mx-3" href="/allTicket">All Tickets</Link></li>
-                    <li className="mt-3"><Link className="mx-3" href="/open">Open</Link></li>
-                    <li className="mt-3"><Link className="mx-3" href="/dashboard">Dashboard</Link></li>
+                    <li className="mt-3"><Link className="mx-2" href="/allTicket">All Tickets</Link></li>
+                    <li className="mt-3"><Link className="mx-2" href="/open">Open</Link></li>
+                    <li className="mt-3"><Link className="mx-2" href="/dashboard">Dashboard</Link></li>
+
+                    <li className="mt-3"><Link className="mx-2" href="/tikcetForm">Create Ticket</Link></li>
 
                    
                         <div className="dropdown dropdown-end mt-1">

@@ -3,7 +3,7 @@ import Link from "next/link";
 // fetching all tickets from DB----------------------
 const alltickets = async () => {
     try {
-        const res = await fetch("http://localhost:3001//api/Tickets", { cache: 'no-store' })
+        const res = await fetch("http://localhost:3000//api/Tickets", { cache: 'no-store' })
         return await res.json()
     } catch (error) {
         return ("Failed to get tickets", error)
@@ -11,7 +11,8 @@ const alltickets = async () => {
 }
 
 async function TicketTable() {
-    const { tickets } = await alltickets();
+    const {tickets} = await alltickets();
+    console.log(tickets)
     return (
         <table className="table">
             <thead>
@@ -25,7 +26,7 @@ async function TicketTable() {
             </thead>
             <tbody>
                 {
-                    tickets.map((singleTicket, index) => {
+                    tickets?.map((singleTicket, index) => {
                         return (
                             <tr key={index}>
                                 <td>{index + 1}</td>

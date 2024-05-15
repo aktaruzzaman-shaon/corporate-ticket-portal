@@ -7,6 +7,7 @@ export default async function Home() {
     <div>
       <div className="overflow-x-auto mx-5">
         <TicketTable></TicketTable>
+        {/* <TicketForm></TicketForm> */}
       </div>
     </div>
   );
