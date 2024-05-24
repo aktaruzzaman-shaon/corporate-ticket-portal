@@ -15,16 +15,16 @@ const Nav = () => {
 
                     <li className="mt-3"><Link className="mx-2" href="/tikcetForm">Create Ticket</Link></li>
 
-                   
-                        <div className="dropdown dropdown-end mt-1">
-                            <div tabIndex={0} role="button" className="btn  rounded-btn">Account</div>
-                            <ul tabIndex={0} className="menu dropdown-content z-[1] p-1 shadow bg-base-300 rounded-box w-42 mt-4">
-                                <li> <Link className="pt-2 mx-3" href="login">login</Link></li>
-                                <li> <Link className="pt-2 mx-3" href="logout">logout</Link></li>
-                                <li> <Link className="pt-2 mx-3" href="signup">Signup</Link></li>
-                            </ul>
-                        </div>
-                   
+
+                    <div className="dropdown dropdown-end mt-1">
+                        <div tabIndex={0} role="button" className="btn  rounded-btn">Account</div>
+                        <ul tabIndex={0} className="menu dropdown-content z-[1] p-1 shadow bg-base-300 rounded-box w-42 mt-4">
+                            <li> <Link className="pt-2 mx-3" href="login">login</Link></li>
+                            <li> <Link className="pt-2 mx-3" href="logout">logout</Link></li>
+                            <li> <Link className="pt-2 mx-3" href="signup">Signup</Link></li>
+                        </ul>
+                    </div>
+
                     {/* <li>
                         <details>
                             <summary>

@@ -21,12 +21,21 @@ const SignUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
     // create user with email and password
-    const signUp = async () => {
+    const signUp = async (e) => {
+        e.preventDefault()
         const res = await createUserWithEmailAndPassword(user.email, user.password)
 
         if (res.user.uid) {
-            await fetch('http://localhost:3000/')
+            const resOfsavingUserData = await fetch('/api/users', {
+                method: 'POST',
+                body: JSON.stringify(user),
+                headers: {
+                    "Content-Type": "application/json"
+                }
 
+            })
+            const res = await resOfsavingUserData.json();
+            console.log(res)
             return router.replace('/allTicket')
         }
     }
