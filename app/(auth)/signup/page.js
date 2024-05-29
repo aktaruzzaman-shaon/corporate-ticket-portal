@@ -32,7 +32,6 @@ const SignUp = () => {
                 headers: {
                     "Content-Type": "application/json"
                 }
-
             })
             const res = await resOfsavingUserData.json();
             console.log(res)

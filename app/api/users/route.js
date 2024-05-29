@@ -4,13 +4,11 @@ import { NextResponse } from "next/server"
 
 export async function POST(req) {
     try {
+        const userData = await req.json();
         await connectdb()
-        console.log(req.body)
-        const body = await req.json()
-        const userInfo = body.user;
-        console.log(body)
-        await User.create(userInfo)
-        return NextResponse.json({ message: "User Data stored" })
+        await User.create({ name: " ticketportal" });
+        console.log(userData)
+        return NextResponse.json({ res: "Created" })
     } catch (err) {
         return NextResponse({ message: "error", err })
     }
