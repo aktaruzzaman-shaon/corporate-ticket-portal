@@ -1,4 +1,4 @@
-import TicketForm from "./(components)/shared/ticketForm";
+import TicketForm from "./ticketform/page";
 import TicketTable from "./(components)/shared/ticketTable";
 import connectdb from "./(models)/db";
 

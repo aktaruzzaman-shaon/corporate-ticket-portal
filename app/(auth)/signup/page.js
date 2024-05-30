@@ -8,39 +8,40 @@ import { useRouter } from "next/navigation";
 
 const SignUp = () => {
 
+    // USER state -------------------------------------------
     const [user, setUser] = useState({
         email: "",
         password: "",
         username: ""
     })
 
-    // use hooks
+    // use hooks ----------------------------------------------
     const router = useRouter();
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const [createUserWithEmailAndPassword, loading,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-    // create user with email and password
+    // create user with email and password---------------------
     const signUp = async (e) => {
         e.preventDefault()
         const res = await createUserWithEmailAndPassword(user.email, user.password)
 
         if (res.user.uid) {
+            const userData = { userName: user.username, userMail: user.email }
+
+            //post userdata to db ------------------------------
             const resOfsavingUserData = await fetch('/api/users', {
                 method: 'POST',
-                body: JSON.stringify(user),
+                body: JSON.stringify(userData),
                 headers: {
                     "Content-Type": "application/json"
                 }
-
             })
-            const res = await resOfsavingUserData.json();
-            console.log(res)
             return router.replace('/allTicket')
         }
     }
 
-    // create user with Google login
+    // create user with Google login-----------------------------
     const googleSignUpHandler = () => {
         signInWithGoogle(user.email, user.password)
     }

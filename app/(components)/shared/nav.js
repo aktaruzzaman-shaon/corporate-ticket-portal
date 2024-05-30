@@ -12,9 +12,7 @@ const Nav = () => {
                     <li className="mt-3"><Link className="mx-2" href="/allTicket">All Tickets</Link></li>
                     <li className="mt-3"><Link className="mx-2" href="/open">Open</Link></li>
                     <li className="mt-3"><Link className="mx-2" href="/dashboard">Dashboard</Link></li>
-
-                    <li className="mt-3"><Link className="mx-2" href="/tikcetForm">Create Ticket</Link></li>
-
+                    <li className="mt-3"><Link className="mx-2" href="ticketform">Create Ticket</Link></li>
 
                     <div className="dropdown dropdown-end mt-1">
                         <div tabIndex={0} role="button" className="btn  rounded-btn">Account</div>

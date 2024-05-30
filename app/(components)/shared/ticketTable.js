@@ -11,8 +11,7 @@ const alltickets = async () => {
 }
 
 async function TicketTable() {
-    const {tickets} = await alltickets();
-    console.log(tickets)
+    const { tickets } = await alltickets();
     return (
         <table className="table">
             <thead>

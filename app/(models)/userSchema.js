@@ -1,4 +1,4 @@
-const { Schema, default: mongoose } = require("mongoose");
+import mongoose, { Schema, model, models, } from "mongoose";
 
 const userSchema = new Schema({
     userName: {
@@ -9,7 +9,7 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Password is require"]
     }
-})
+}, { timestamps: true })
 
 const User = mongoose.models.User || mongoose.model("User", userSchema)
 
