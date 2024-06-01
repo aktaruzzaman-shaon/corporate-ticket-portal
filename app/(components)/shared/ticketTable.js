@@ -1,17 +1,12 @@
-import Link from "next/link";
-
-// fetching all tickets from DB----------------------
-const alltickets = async () => {
-    try {
-        const res = await fetch("http://localhost:3000//api/Tickets", { cache: 'no-store' })
-        return await res.json()
-    } catch (error) {
-        return ("Failed to get tickets", error)
-    }
-}
+"use client"
+import alltickets from "@/app/data/allTicket";
 
 async function TicketTable() {
+
     const { tickets } = await alltickets();
+    const ticketDetails = () => {
+        console.log("Clicked")
+    }
     return (
         <table className="table">
             <thead>
@@ -27,7 +22,7 @@ async function TicketTable() {
                 {
                     tickets?.map((singleTicket, index) => {
                         return (
-                            <tr key={index}>
+                            <tr key={index} onClick={() => ticketDetails()}>
                                 <td>{index + 1}</td>
                                 <td>{singleTicket._id}</td>
                                 <td>{singleTicket.title}</td>
