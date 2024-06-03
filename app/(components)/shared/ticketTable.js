@@ -1,11 +1,16 @@
 "use client"
 import alltickets from "@/app/data/allTicket";
+import { useRouter } from "next/router";
 
-async function TicketTable() {
+ async function TicketTable() {
+    // hooks------------------------------
+    // const router = useRouter();
 
-    const { tickets } = await alltickets();
+    const { tickets } =  alltickets();
+
     const ticketDetails = () => {
-        console.log("Clicked")
+        console.log(router)
+        // router.push('/login')
     }
     return (
         <table className="table">
