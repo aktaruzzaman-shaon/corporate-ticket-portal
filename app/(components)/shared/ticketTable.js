@@ -1,16 +1,11 @@
 "use client"
-import alltickets from "@/app/data/allTicket";
-import { useRouter } from "next/router";
 
- async function TicketTable() {
-    // hooks------------------------------
-    // const router = useRouter();
+import { useRouter } from "next/navigation";
 
-    const { tickets } =  alltickets();
-
-    const ticketDetails = () => {
-        console.log(router)
-        // router.push('/login')
+function TicketTable({ tickets }) {
+    const router = useRouter();
+    const singleTicketDetails = (id) => {
+        router.push(`/allTicket/${id}`)
     }
     return (
         <table className="table">
@@ -27,7 +22,7 @@ import { useRouter } from "next/router";
                 {
                     tickets?.map((singleTicket, index) => {
                         return (
-                            <tr key={index} onClick={() => ticketDetails()}>
+                            <tr key={index} onClick={() => singleTicketDetails(singleTicket._id)} className="cursor-pointer">
                                 <td>{index + 1}</td>
                                 <td>{singleTicket._id}</td>
                                 <td>{singleTicket.title}</td>

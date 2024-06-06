@@ -1,7 +1,7 @@
 import connectdb from "@/app/(models)/db";
 import Ticket from "@/app/(models)/ticketSchema";
 import mongoose from "mongoose";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // Api for POST new Ticket----------------------------------------
 
@@ -18,11 +18,15 @@ export async function POST(req) {
     }
 }
 
-export async function GET(req) {
+export async function GET(request) {
 
     try {
         await connectdb()
+        const id = request.nextUrl.searchParams;
+        const query = id.get("id")
+        console.log(query,"query")
         const tickets = await Ticket.find();
+        // console.log(tickets)
         return NextResponse.json({ tickets: tickets })
     } catch (error) {
         return NextResponse.json({ message: "erro", error }, { status: 500 })
