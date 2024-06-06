@@ -22,12 +22,19 @@ export async function GET(request) {
 
     try {
         await connectdb()
-        const id = request.nextUrl.searchParams;
-        const query = id.get("id")
-        console.log(query,"query")
-        const tickets = await Ticket.find();
-        // console.log(tickets)
-        return NextResponse.json({ tickets: tickets })
+        const { searchParams } = new URL(request.url);
+        const name = searchParams.get("name")
+        console.log(name)
+        if (name) {
+            const query = {_id : name}
+            const tickets = await Ticket.findOne(query);
+            console.log(tickets)
+            return NextResponse.json({ tickets: tickets })
+        }
+        else {
+            const tickets = await Ticket.find();
+            return NextResponse.json({ tickets: tickets })
+        }
     } catch (error) {
         return NextResponse.json({ message: "erro", error }, { status: 500 })
     }
