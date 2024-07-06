@@ -1,5 +1,5 @@
-import connectdb from "@/app/(models)/db"
-import User from "@/app/(models)/userSchema"
+import connectdb from "@/app/(lib)/db"
+import User from "@/app/(lib)/userSchema"
 import { NextResponse } from "next/server"
 
 export async function POST(req) {

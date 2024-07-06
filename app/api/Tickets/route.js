@@ -1,5 +1,5 @@
-import connectdb from "@/app/(models)/db";
-import Ticket from "@/app/(models)/ticketSchema";
+import connectdb from "@/app/(lib)/db";
+import Ticket from "@/app/(lib)/ticketSchema";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -23,12 +23,11 @@ export async function GET(request) {
     try {
         await connectdb()
         const { searchParams } = new URL(request.url);
-        const name = searchParams.get("name")
-        console.log(name)
-        if (name) {
-            const query = {_id : name}
+        const id = searchParams.get("id")
+        if (id) {
+            const query = { _id: id }
             const tickets = await Ticket.findOne(query);
-            console.log(tickets)
+
             return NextResponse.json({ tickets: tickets })
         }
         else {
