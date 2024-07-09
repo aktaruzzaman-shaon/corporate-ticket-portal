@@ -1,4 +1,3 @@
-
 import mongoose, { Schema, Types, model, models, } from "mongoose";
 
 const userSchema = new Schema(

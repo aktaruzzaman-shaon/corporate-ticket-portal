@@ -13,8 +13,8 @@ async function alltickets() {
 
 
 async function allTicket() {
-    const { tickets } = await alltickets();
-
+    const tickets = await alltickets();
+    console.log(tickets)
     return (
         <div>
             <TicketTable tickets={tickets} ></TicketTable>

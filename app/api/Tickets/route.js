@@ -2,7 +2,7 @@ import connectdb from "@/app/(lib)/db";
 import Ticket from "@/app/(lib)/ticketSchema";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
-
+78
 // Api for POST new Ticket----------------------------------------
 
 export async function POST(req) {
@@ -10,6 +10,7 @@ export async function POST(req) {
         await connectdb()
         const body = await req.json()
         const ticketData = body.newTicket;
+
         await Ticket.create(ticketData)
 
         return NextResponse.json({ message: "Ticket created" })
@@ -27,12 +28,11 @@ export async function GET(request) {
         if (id) {
             const query = { _id: id }
             const tickets = await Ticket.findOne(query);
-
-            return NextResponse.json({ tickets: tickets })
+            return NextResponse.json(tickets)
         }
         else {
             const tickets = await Ticket.find();
-            return NextResponse.json({ tickets: tickets })
+            return new NextResponse(JSON.stringify({ tickets }),{message: "Fetched all tickets"})
         }
     } catch (error) {
         return NextResponse.json({ message: "erro", error }, { status: 500 })
