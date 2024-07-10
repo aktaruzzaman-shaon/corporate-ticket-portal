@@ -1,5 +1,7 @@
 "use client"
 import React, { useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../services/firebase/firebase.config';
 
 const TicketForm = () => {
 
@@ -11,6 +13,8 @@ const TicketForm = () => {
         progress: 0,
         status: "not started"
     }
+    const [user, loading] = useAuthState(auth);
+    console.log(user, "user")
 
     const [newTicket, setNewTicket] = useState(singleTicket);
 
@@ -27,19 +31,22 @@ const TicketForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch("/api/Tickets", {
+        const res = await fetch(`/api/Tickets/`, {
             method: "POST",
             body: JSON.stringify({ newTicket }),
             "content-type": "application/json"
         })
         if (res.ok) {
+            <p>Ticket is created</p>
             console.log("ticket created")
         }
 
     }
 
+    // /?userId=${id}
+
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center h-screen mt-20'>
             <form method='post' onSubmit={handleSubmit}>
                 <h3 className='text-center'>Create your ticket</h3>
 
