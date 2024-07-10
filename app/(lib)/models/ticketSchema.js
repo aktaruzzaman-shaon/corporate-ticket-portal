@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { model, models, Schema } from "mongoose";
 
 const ticketSchema = new Schema(
     {
@@ -25,11 +25,14 @@ const ticketSchema = new Schema(
         status: {
             type: String,
             required: true
+        },
+        user:{
+            type: Schema.Types.ObjectId, ref: "User"
         }
     },
     { timestamps: true }
 )
 
-const Ticket = mongoose.models.Ticket || mongoose.model("Ticket", ticketSchema)
+const Ticket = models.Ticket || model("Ticket", ticketSchema)
 
 export default Ticket;

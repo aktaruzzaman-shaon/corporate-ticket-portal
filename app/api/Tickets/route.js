@@ -1,16 +1,31 @@
 import connectdb from "@/app/(lib)/db";
-import Ticket from "@/app/(lib)/ticketSchema";
-import mongoose from "mongoose";
+import Ticket from "@/app/(lib)/models/ticketSchema";
+import mongoose, { Types } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 // Api for POST new Ticket----------------------------------------
 
 export async function POST(req) {
     try {
+        const { searchParams } = new URL(req.url)
+        const userId = searchParams.get("userId")
+
         await connectdb()
+        
         const body = await req.json()
-        const ticketData = body.newTicket;
-        await Ticket.create(ticketData)
+        const { title, description, category, priority, progress, status } = body.newTicket;
+
+        const newCreatedTicket = new Ticket({
+            title,
+            description,
+            category,
+            priority,
+            progress,
+            status,
+            user: new Types.ObjectId(userId)
+        })
+
+        await newCreatedTicket.save()
 
         return NextResponse.json({ message: "Ticket created" })
     } catch (err) {
