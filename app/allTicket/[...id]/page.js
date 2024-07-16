@@ -1,18 +1,19 @@
 import SingleTicketDetails from "@/app/(components)/shared/singleTicketDetails";
 
-<<<<<<< HEAD
-async function SingleTicket({ params }) {
-=======
-async function SinglePageDetails({ params }) {
 
->>>>>>> 9452792d44bbad36aacbabc66a6f9cf385cf0f85
+async function SingleTicket({ params }) {
+
+    console.log(params.id[0])
+
     const res = await fetch(`http://localhost:3000/api/Tickets?id=${params.id[0]}`)
     const singleTicketDetails = await res.json();
+
+    console.log(singleTicketDetails)
 
     return (
         <div>
             {params.id[0]}
-            <SingleTicketDetails singleTicketDetails={singleTicketDetails}></SingleTicketDetails>
+            {/* <SingleTicketDetails singleTicketDetails={singleTicketDetails}></SingleTicketDetails> */}
         </div>
     )
 }

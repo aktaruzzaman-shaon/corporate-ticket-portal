@@ -26,14 +26,11 @@ const ticketSchema = new Schema(
             type: String,
             required: true
         },
-<<<<<<< HEAD:app/(lib)/models/ticketSchema.js
-        user:{
-            type: Schema.Types.ObjectId, ref: "User"
-=======
         user: {
-            type: Schema.Types.ObjectId, 
-            ref: "User"
->>>>>>> 9452792d44bbad36aacbabc66a6f9cf385cf0f85:app/(lib)/ticketSchema.js
+            type: Schema.Types.ObjectId, ref: "User"
+        },
+        name: {
+            type: String, ref: "User"
         }
     },
     { timestamps: true }

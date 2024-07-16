@@ -9,8 +9,8 @@ async function alltickets() {
   }
 }
 export default async function Home() {
-  const {tickets} = await alltickets();
-  
+  const tickets = await alltickets();
+
   return (
     <div>
       <div className="overflow-x-auto mx-5">
